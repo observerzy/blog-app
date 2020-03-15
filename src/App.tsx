@@ -1,15 +1,16 @@
-import React from "react";
-import "./App.module.scss";
-import Home from "./home";
-import Login from "./login";
+import React from 'react';
+import './App.module.scss';
+import Provider from './store/index';
+import Router from './router';
 
 function App() {
-    return (
-        <div className="App">
-            <Home></Home>
-            <Login></Login>
-        </div>
-    );
+  return (
+    <div>
+      <Provider>
+        <Router />
+      </Provider>
+    </div>
+  );
 }
 
 export default App;
