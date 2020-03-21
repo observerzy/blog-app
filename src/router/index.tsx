@@ -1,6 +1,8 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Skeleton } from 'antd';
 import routerMap from './routerMap';
+import style from './index.module.scss';
 
 const App = () => {
   const route = routerMap.map(item => {
@@ -14,7 +16,13 @@ const App = () => {
     );
   });
   return (
-    <Suspense fallback={<div>loading...</div>}>
+    <Suspense
+      fallback={
+        <div className={style.loading}>
+          <Skeleton active />
+        </div>
+      }
+    >
       <Router>
         <Switch>{route}</Switch>
       </Router>

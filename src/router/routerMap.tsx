@@ -12,6 +12,9 @@ const Register = lazy(() =>
 const Home = lazy(() =>
   import(/*webpackChunkName:"home"*/ '../containers/home')
 );
+const Writing = lazy(() =>
+  import(/*webpackChunkName:"writing"*/ '@/containers/writing')
+);
 
 const routerMap = [
   {
@@ -29,6 +32,10 @@ const routerMap = [
   {
     path: '/register',
     component: Register
+  },
+  {
+    path: '/writing',
+    component: Writing
   }
 ];
 

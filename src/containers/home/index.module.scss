@@ -1,9 +1,35 @@
-.container {
+.main {
   width: 100%;
-  height: 100%;
-  background-color: red;
+  height: 100vh;
 }
-
-.hello {
-  color: #000;
+.header {
+  padding-top: 35px;
+  color: rgba($color: #333333, $alpha: 0.7);
+  display: flex;
+  border-bottom: 1px solid #eee;
+}
+.headerContainer {
+  width: 60%;
+  display: inline-block;
+  margin-left: 15%;
+  .title {
+    font-size: 35px;
+    cursor: pointer;
+  }
+  .mark {
+    margin: 5px 0 0;
+    color: #999;
+    font-style: italic;
+  }
+}
+.search {
+  display: inline-block;
+  width: 20%;
+  margin-top: 30px;
+}
+.body {
+  color: rgba($color: #c5b2b2, $alpha: 1);
+}
+.article {
+  color: rgba($color: #c5b2b2, $alpha: 1);
 }
