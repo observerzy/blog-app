@@ -1,0 +1,32 @@
+@import '../../common/common.module.scss';
+
+.article {
+  width: 60%;
+  display: inline-block;
+  margin-left: 20%;
+  padding: 15px 0 20px;
+  @include borderBottom;
+}
+.title {
+  color: $purple;
+  font-size: large;
+  font-weight: bold;
+  margin: 10px 0 5px 0;
+}
+.messageList {
+  display: flex;
+  padding: 0;
+  li {
+    list-style-type: none;
+    padding-right: 20px;
+  }
+}
+.content {
+  color: rgba($color: #c5b2b2, $alpha: 1);
+}
+.more {
+  text-align: center;
+  cursor: pointer;
+  color: $purple;
+  margin: 14px;
+}

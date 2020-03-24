@@ -1,1 +1,6 @@
 $red: red;
+$purple: #3354aa;
+
+@mixin borderBottom {
+  border-bottom: 1px solid #eee;
+}

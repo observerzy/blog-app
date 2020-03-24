@@ -1,3 +1,4 @@
+@import '../../common/common.module.scss';
 .main {
   width: 100%;
   height: 100vh;
@@ -6,7 +7,7 @@
   padding-top: 35px;
   color: rgba($color: #333, $alpha: 0.9);
   display: flex;
-  border-bottom: 1px solid #eee;
+  @include borderBottom;
 }
 .headerContainer {
   width: 60%;
@@ -43,15 +44,12 @@
   }
 }
 .search {
-  margin-right: 25%;
+  margin-right: 20%;
   display: inline-block;
   width: 20%;
   margin-top: 30px;
   max-width: 200px;
 }
 .body {
-  color: rgba($color: #c5b2b2, $alpha: 1);
-}
-.article {
   color: rgba($color: #c5b2b2, $alpha: 1);
 }

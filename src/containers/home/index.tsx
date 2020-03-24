@@ -1,20 +1,16 @@
 import React from 'react';
 import style from './index.module.scss';
-import marked from 'marked';
 import { Input, Tooltip } from 'antd';
+import Article from '@/components/article';
 const Home: React.SFC = () => {
-  const markedRef = React.useRef<HTMLDivElement>(null);
   const [searchValue, setSearchValue] = React.useState<string>('');
   const [isCurrent, setIsCurrent] = React.useState<number>(0);
   const navList = [
     { name: '首页', uri: '#' },
+    { name: '书单', uri: '#' },
     { name: '关于', uri: '#' }
   ];
-  React.useEffect(() => {
-    markedRef.current.innerHTML = marked(
-      '# Marked in browser\n\nRendered by **marked**.'
-    );
-  }, [markedRef]);
+
   return (
     <div className={style.main}>
       <div className={style.header}>
@@ -62,7 +58,10 @@ const Home: React.SFC = () => {
         </div>
       </div>
       <div className={style.body}>
-        <div ref={markedRef} className={style.article}></div>
+        <Article></Article>
+        <Article></Article>
+        <Article></Article>
+        <Article></Article>
       </div>
     </div>
   );
