@@ -58,10 +58,13 @@ const Home: React.SFC = () => {
         </div>
       </div>
       <div className={style.body}>
-        <Article></Article>
-        <Article></Article>
-        <Article></Article>
-        <Article></Article>
+        <div className={style.articleArea}>
+          <Article></Article>
+          <Article></Article>
+          <Article></Article>
+          <Article></Article>
+        </div>
+        <div className={style.retrievalArea}></div>
       </div>
     </div>
   );

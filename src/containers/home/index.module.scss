@@ -52,4 +52,15 @@
 }
 .body {
   color: rgba($color: #c5b2b2, $alpha: 1);
+  display: flex;
+}
+.articleArea {
+  width: 60%;
+  display: inline-block;
+  margin-left: 20%;
+}
+.retrievalArea {
+  margin-right: 20%;
+  display: inline-block;
+  width: 20%;
 }

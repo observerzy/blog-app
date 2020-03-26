@@ -1,9 +1,6 @@
 @import '../../common/common.module.scss';
 
 .article {
-  width: 60%;
-  display: inline-block;
-  margin-left: 20%;
   padding: 15px 0 20px;
   @include borderBottom;
 }
