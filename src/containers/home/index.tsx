@@ -2,7 +2,9 @@ import React from 'react';
 import style from './index.module.scss';
 import { Input, Tooltip } from 'antd';
 import Article from '@/components/article';
+import useArticleListHook from './useArticleListHook';
 const Home: React.SFC = () => {
+  const articleListHook = useArticleListHook();
   const [searchValue, setSearchValue] = React.useState<string>('');
   const [isCurrent, setIsCurrent] = React.useState<number>(0);
   const navList = [
@@ -10,7 +12,9 @@ const Home: React.SFC = () => {
     { name: '书单', uri: '#' },
     { name: '关于', uri: '#' }
   ];
-
+  React.useEffect(() => {
+    articleListHook.getArticleList();
+  }, []);
   return (
     <div className={style.main}>
       <div className={style.header}>
@@ -27,7 +31,7 @@ const Home: React.SFC = () => {
           <div className={style.mark}>——记录我的成长历程</div>
           <div className={style.navMenu}>
             {navList.map((val, index) => (
-              <>
+              <div key={index}>
                 <a
                   onClick={() => {
                     setIsCurrent(index);
@@ -37,7 +41,7 @@ const Home: React.SFC = () => {
                 >
                   {val.name}
                 </a>
-              </>
+              </div>
             ))}
           </div>
         </div>
@@ -59,10 +63,9 @@ const Home: React.SFC = () => {
       </div>
       <div className={style.body}>
         <div className={style.articleArea}>
-          <Article></Article>
-          <Article></Article>
-          <Article></Article>
-          <Article></Article>
+          {articleListHook.articleList.map((_val, index) => (
+            <Article key={index}></Article>
+          ))}
         </div>
         <div className={style.retrievalArea}></div>
       </div>

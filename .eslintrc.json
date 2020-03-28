@@ -1,6 +1,7 @@
 {
     "extends": "react-app",
     "rules": {
-        "indent": ["warn", 4]
+        "indent": ["off", 4],
+        "react-hooks/exhaustive-deps": "off"
     }
 }
