@@ -1,19 +1,22 @@
-import React from "react";
-import style from "./index.module.scss";
-import { Input, Tooltip } from "antd";
-import Article from "@/components/article";
-import useArticleListHook from "./useArticleListHook";
+import React from 'react';
+import style from './index.module.scss';
+import { Input, Tooltip } from 'antd';
+import Article from '@/components/article';
+import useArticleListHook from './useArticleListHook';
 const Home: React.SFC = () => {
     const articleListHook = useArticleListHook();
-    const [searchValue, setSearchValue] = React.useState<string>("");
+    const [searchValue, setSearchValue] = React.useState<string>('');
     const [isCurrent, setIsCurrent] = React.useState<number>(0);
     const navList = [
-        { name: "首页", uri: "#" },
-        { name: "书单", uri: "#" },
-        { name: "关于", uri: "#" }
+        { name: '首页', uri: '#' },
+        { name: '书单', uri: '#' },
+        { name: '关于', uri: '#' }
     ];
     React.useEffect(() => {
-        articleListHook.getArticleList();
+        const fetch = () => {
+            return articleListHook.getArticleList();
+        };
+        fetch(); // 处理eslint对useEffect依赖报错的问题
     }, []);
     return (
         <div className={style.main}>
@@ -52,14 +55,14 @@ const Home: React.SFC = () => {
                 <div className={style.search}>
                     <Tooltip placement="topLeft" title="o(￣▽￣)ｄ">
                         <Input.Search
-                            style={{ borderRadius: "3px" }}
+                            style={{ borderRadius: '3px' }}
                             placeholder="输入关键字搜索"
                             value={searchValue}
                             onChange={e => {
                                 setSearchValue(e.target.value);
                             }}
                             onSearch={() => {
-                                setSearchValue("");
+                                setSearchValue('');
                             }}
                         />
                     </Tooltip>
@@ -67,8 +70,8 @@ const Home: React.SFC = () => {
             </div>
             <div className={style.body}>
                 <div className={style.articleArea}>
-                    {articleListHook.articleList.map((_val, index) => (
-                        <Article key={index}></Article>
+                    {articleListHook.articleList.map((val, index) => (
+                        <Article key={index} article={val}></Article>
                     ))}
                 </div>
                 <div className={style.retrievalArea}></div>
