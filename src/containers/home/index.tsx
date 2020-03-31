@@ -3,14 +3,18 @@ import style from './index.module.scss';
 import { Input, Tooltip } from 'antd';
 import Article from '@/components/article';
 import useArticleListHook from './useArticleListHook';
+import { useHistory } from 'react-router-dom';
+import cx from 'classnames';
 const Home: React.SFC = () => {
     const articleListHook = useArticleListHook();
     const [searchValue, setSearchValue] = React.useState<string>('');
     const [isCurrent, setIsCurrent] = React.useState<number>(0);
+    const history = useHistory();
     const navList = [
-        { name: '首页', uri: '#' },
-        { name: '书单', uri: '#' },
-        { name: '关于', uri: '#' }
+        { name: '首页', uri: '/home' },
+        { name: '书单', uri: '/writing' },
+        { name: '关于', uri: '/test' },
+        { name: '测试', uri: '/home' }
     ];
     React.useEffect(() => {
         const fetch = () => {
@@ -35,19 +39,20 @@ const Home: React.SFC = () => {
                     <div className={style.navMenu}>
                         {navList.map((val, index) => (
                             <div key={index}>
-                                <a
+                                <div
                                     onClick={() => {
                                         setIsCurrent(index);
+                                        history.push(val.uri);
                                     }}
-                                    href={val.uri}
-                                    className={
+                                    className={cx(
                                         isCurrent === index
                                             ? style.current
-                                            : null
-                                    }
+                                            : null,
+                                        style.tabs
+                                    )}
                                 >
                                     {val.name}
-                                </a>
+                                </div>
                             </div>
                         ))}
                     </div>

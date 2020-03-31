@@ -1,66 +1,67 @@
 @import '../../common/common.module.scss';
 .main {
-  width: 100%;
-  height: 100vh;
+    width: 100%;
+    height: 100vh;
 }
 .header {
-  padding-top: 35px;
-  color: rgba($color: #333, $alpha: 0.9);
-  display: flex;
-  @include borderBottom;
+    padding-top: 35px;
+    color: rgba($color: #333, $alpha: 0.9);
+    display: flex;
+    @include borderBottom;
 }
 .headerContainer {
-  width: 60%;
-  display: inline-block;
-  margin-left: 20%;
-  .title {
-    font-size: 35px;
-    span {
-      cursor: pointer;
+    width: 60%;
+    display: inline-block;
+    margin-left: 20%;
+    .title {
+        font-size: 35px;
+        span {
+            cursor: pointer;
+        }
     }
-  }
-  .mark {
-    margin: 5px 0 0;
-    color: #999;
-    font-style: italic;
-  }
-  .navMenu {
-    margin-top: 25px;
-    a {
-      display: block;
-      margin-right: -1px;
-      padding: 0 20px;
-      border: 1px solid #eee;
-      border-bottom: none;
-      height: 32px;
-      line-height: 32px;
-      color: #444;
-      float: left;
+    .mark {
+        margin: 5px 0 0;
+        color: #999;
+        font-style: italic;
     }
-    a:hover,
-    .current {
-      background: #f6f6f6;
+    .navMenu {
+        margin-top: 25px;
+        .tabs {
+            display: block;
+            margin-right: -1px;
+            padding: 0 20px;
+            border: 1px solid #eee;
+            border-bottom: none;
+            height: 32px;
+            line-height: 32px;
+            color: #444;
+            float: left;
+            cursor: pointer;
+        }
+        .tabs:hover,
+        .current {
+            background: #f6f6f6;
+        }
     }
-  }
 }
 .search {
-  margin-right: 20%;
-  display: inline-block;
-  width: 20%;
-  margin-top: 30px;
-  max-width: 200px;
+    margin-right: 20%;
+    display: inline-block;
+    width: 20%;
+    margin-top: 30px;
+    max-width: 200px;
 }
 .body {
-  color: rgba($color: #c5b2b2, $alpha: 1);
-  display: flex;
+    color: rgba($color: #c5b2b2, $alpha: 1);
+    display: flex;
 }
 .articleArea {
-  width: 60%;
-  display: inline-block;
-  margin-left: 20%;
+    width: 60%;
+    display: inline-block;
+    margin-left: 20%;
 }
 .retrievalArea {
-  margin-right: 20%;
-  display: inline-block;
-  width: 20%;
+    margin-right: 20%;
+    display: inline-block;
+    width: 20%;
 }

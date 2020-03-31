@@ -1,40 +1,40 @@
-import { lazy } from "react";
+import { lazy } from 'react';
 
 const Test = lazy(() =>
-    import(/*webpackChunkName:"test"*/ "../containers/test")
+    import(/*webpackChunkName:"test"*/ '../containers/test')
 );
 const Page = lazy(() =>
-    import(/*webpackChunkName:"page"*/ "../containers/page")
+    import(/*webpackChunkName:"page"*/ '../containers/page')
 );
 const Register = lazy(() =>
-    import(/*webpackChunkName:"register"*/ "../containers/register")
+    import(/*webpackChunkName:"register"*/ '../containers/register')
 );
 const Home = lazy(() =>
-    import(/*webpackChunkName:"home"*/ "../containers/home")
+    import(/*webpackChunkName:"home"*/ '../containers/home')
 );
 const Writing = lazy(() =>
-    import(/*webpackChunkName:"writing"*/ "@/containers/writing")
+    import(/*webpackChunkName:"writing"*/ '@/containers/writing')
 );
 
 const routerMap = [
     {
-        path: "/",
+        path: '/home',
         component: Home
     },
     {
-        path: "/test",
+        path: '/test',
         component: Test
     },
     {
-        path: "/page",
+        path: '/page',
         component: Page
     },
     {
-        path: "/register",
+        path: '/register',
         component: Register
     },
     {
-        path: "/writing",
+        path: '/writing',
         component: Writing
     }
 ];
