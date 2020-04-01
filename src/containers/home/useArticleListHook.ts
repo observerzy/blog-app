@@ -1,14 +1,13 @@
 import React from 'react';
 import queryArticleList, {
-    Resp as TQueryArticleListResp
+    Resp as TQueryArticleListResp,
+    Article
 } from '@/common/service/queryArticleList';
 import { AxiosRespWithWebAPI } from '../../common/http';
 
 export default () => {
     const [loading, setLoading] = React.useState<boolean>(false);
-    const [articleList, setArticleList] = React.useState<TQueryArticleListResp>(
-        []
-    );
+    const [articleList, setArticleList] = React.useState<Article[]>([]);
 
     const getArticleList = async () => {
         try {

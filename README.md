@@ -42,3 +42,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## 记录：husky 添加 eslint 检查代码风格对@import 报错（2020 年 4 月 1 日 01 点 48 分）
+
+提交代码时 eslint 检查弃用
