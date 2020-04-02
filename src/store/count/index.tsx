@@ -9,10 +9,10 @@ import React, {
 export const initState = {
     count: 0
 };
-
-const CountCtx = createContext<Context<ICount.State, Dispatch<ICount.Action>>>(
-    null
-);
+interface Options {}
+const CountCtx = createContext<
+    Context<ICount.State, Dispatch<ICount.Action>, Options>
+>(null);
 
 const reducer = (state: ICount.State, action: ICount.Action) => {
     switch (action.type) {
@@ -29,9 +29,11 @@ const reducer = (state: ICount.State, action: ICount.Action) => {
 
 export const Provider: ComponentType = props => {
     const [state, dispatch] = useReducer(reducer, initState);
+    const options: Options = {};
+
     return (
         // 所包裹的一系列组件/子组件都可以用state,dispatch
-        <CountCtx.Provider value={{ state, dispatch }}>
+        <CountCtx.Provider value={{ state, dispatch, options }}>
             {props.children}
         </CountCtx.Provider>
     );

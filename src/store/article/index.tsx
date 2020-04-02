@@ -17,21 +17,27 @@ export interface State {
 }
 
 type Action = { type: 'SETARTICLELIST'; payload: { articleList: Article[] } };
+interface Options {
+    getArticleList: (
+        params: TQueryArticleListReq
+    ) => Promise<TQueryArticleListReq | null>;
+}
+const ArticleCtx = createContext<Context<State, Dispatch<Action>, Options>>(
+    null
+);
 
 export const initState: State = {
-    articleList: [] //为什么
+    articleList: []
 };
-
-const ArticleCtx = createContext<Context<State, Dispatch<Action>>>(null);
-
 const reducer = (state: State, action: Action) => {
     switch (action.type) {
         case 'SETARTICLELIST':
             return {
-                articleList: [
-                    ...state.articleList,
-                    ...action.payload.articleList
-                ]
+                // articleList: [
+                //     ...state.articleList,
+                //     ...action.payload.articleList
+                // ]
+                articleList: action.payload.articleList
             };
         default:
             return state;
@@ -39,28 +45,34 @@ const reducer = (state: State, action: Action) => {
 };
 
 const getArticleList = (params: TQueryArticleListReq) => {
-    return new Promise<TQueryArticleListReq>(async (resolve, reject) => {
-        try {
-            const res: AxiosRespWithWebAPI<TQueryArticleListResp> = await queryArticleList.fetch(
-                params
-            );
-            resolve(res.data.body);
-        } catch (error) {
-            reject(error);
+    return new Promise<TQueryArticleListResp | null>(
+        async (resolve, reject) => {
+            try {
+                const res: AxiosRespWithWebAPI<TQueryArticleListResp> = await queryArticleList.fetch(
+                    params
+                );
+                resolve(res.data.body);
+            } catch (error) {
+                reject(error);
+            }
         }
-    });
+    );
 };
 
 export const Provider: ComponentType = props => {
     const [state, dispatch] = useReducer(reducer, initState);
-    React.useEffect(() => {
+    const options: Options = { getArticleList };
+    const queryArticle = () => {
         getArticleList({}).then(res => {
-            console.log('res:', res);
+            dispatch({ type: 'SETARTICLELIST', payload: { articleList: res } });
         });
+    };
+    React.useEffect(() => {
+        queryArticle();
     }, []);
     return (
         // 所包裹的一系列组件/子组件都可以用state,dispatch
-        <ArticleCtx.Provider value={{ state, dispatch }}>
+        <ArticleCtx.Provider value={{ state, dispatch, options }}>
             {props.children}
         </ArticleCtx.Provider>
     );

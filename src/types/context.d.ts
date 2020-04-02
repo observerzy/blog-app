@@ -1,5 +1,5 @@
-// declare声明可以全局使用？待研究
-declare interface Context<T, P> {
-  state: T;
-  dispatch: P;
+declare interface Context<T, P, O> {
+    state: T;
+    dispatch: P;
+    options: O;
 }
