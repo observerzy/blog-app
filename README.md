@@ -43,6 +43,17 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-## 记录：husky 添加 eslint 检查代码风格对@import 报错（2020 年 4 月 1 日 01 点 48 分）
+## husky 添加 eslint 检查代码风格对@import 报错（2020 年 4 月 1 日 01 点 48 分）
 
 提交代码时 eslint 检查弃用
+
+## 处理 eslint 对 useEffect 依赖为空时报错的问题
+
+```
+    React.useEffect(() => {
+        const fetch = () => {
+        return articleListHook.getArticleList();
+        };
+        fetch();
+    }, []);
+```
