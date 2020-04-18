@@ -6,6 +6,7 @@ import Headpage from './headpage';
 import cx from 'classnames';
 const Home: React.SFC = () => {
     const [searchValue, setSearchValue] = React.useState<string>('');
+    //当前所在页，需考虑是否将其交给context管理
     const [isCurrent, setIsCurrent] = React.useState<number>(0);
     const history = useHistory();
     const match = useRouteMatch();

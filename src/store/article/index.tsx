@@ -14,30 +14,35 @@ import { AxiosRespWithWebAPI } from '../../common/http';
 
 export interface State {
     articleList: Article[];
+    total: number;
 }
 
-type Action = { type: 'SETARTICLELIST'; payload: { articleList: Article[] } };
+type Action =
+    | { type: 'SETARTICLELIST'; payload: { articleList: Article[] } }
+    | { type: 'SETTOTAL'; payload: { total: number } };
+
 interface Options {
-    getArticleList: (
-        params: TQueryArticleListReq
-    ) => Promise<TQueryArticleListReq | null>;
+    queryArticle: (page: number) => void;
 }
 const ArticleCtx = createContext<Context<State, Dispatch<Action>, Options>>(
     null
 );
 
 export const initState: State = {
-    articleList: []
+    articleList: [],
+    total: 0
 };
 const reducer = (state: State, action: Action) => {
     switch (action.type) {
         case 'SETARTICLELIST':
             return {
-                // articleList: [
-                //     ...state.articleList,
-                //     ...action.payload.articleList
-                // ]
+                ...state,
                 articleList: action.payload.articleList
+            };
+        case 'SETTOTAL':
+            return {
+                ...state,
+                total: action.payload.total
             };
         default:
             return state;
@@ -61,12 +66,25 @@ const getArticleList = (params: TQueryArticleListReq) => {
 
 export const Provider: ComponentType = props => {
     const [state, dispatch] = useReducer(reducer, initState);
-    const options: Options = { getArticleList };
-    const queryArticle = () => {
-        getArticleList({}).then(res => {
-            dispatch({ type: 'SETARTICLELIST', payload: { articleList: res } });
+    const queryArticle = (page?: number) => {
+        getArticleList({
+            pagination: {
+                total: 0,
+                offset: page ? (page - 1) * 10 : 0,
+                limit: 10
+            }
+        }).then(res => {
+            dispatch({
+                type: 'SETARTICLELIST',
+                payload: { articleList: res.articleList }
+            });
+            dispatch({
+                type: 'SETTOTAL',
+                payload: { total: res.pagination.total }
+            });
         });
     };
+    const options: Options = { queryArticle };
     React.useEffect(() => {
         queryArticle();
     }, []);

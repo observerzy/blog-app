@@ -14,7 +14,7 @@ export default () => {
             const res: AxiosRespWithWebAPI<TQueryArticleListResp> = await queryArticleList.fetch(
                 {}
             );
-            setArticleList(res.data.body);
+            setArticleList(res.data.body.articleList);
         } catch (error) {
             console.log('error:', error.message);
         }

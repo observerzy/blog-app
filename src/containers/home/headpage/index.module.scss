@@ -1,0 +1,9 @@
+@import '../../../common/common.module.scss';
+
+.pagenation {
+    margin: 30px 0;
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
