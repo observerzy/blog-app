@@ -15,6 +15,7 @@ const Headpage: React.SFC = () => {
                 className={style.pagenation}
                 defaultCurrent={1}
                 total={state.total}
+                hideOnSinglePage
                 onChange={page => {
                     options.queryArticle(page);
                 }}

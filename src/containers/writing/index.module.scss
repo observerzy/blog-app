@@ -1,0 +1,53 @@
+@import '../../common/common.module.scss';
+
+.head {
+    position: relative;
+    .headMsg {
+        padding-left: 100px;
+        font-size: 35px;
+        font-weight: 500;
+        font-family: cursive;
+    }
+    .operateArea {
+        padding: 15px;
+        position: absolute;
+        z-index: 1000;
+        right: 0;
+        top: 0;
+        display: flex;
+        .saveBtn {
+            margin: 0 10px;
+        }
+    }
+}
+
+.main {
+    margin: 15px;
+    display: flex;
+}
+.write,
+.read {
+    width: 50%;
+}
+.write {
+    padding-right: 10px;
+    .titleInput {
+        margin-bottom: 10px;
+    }
+}
+.read {
+    margin-left: 10px;
+    padding: 0 10px;
+    @include border;
+    word-break: break-all;
+    word-wrap: break-word;
+    height: 822px;
+    overflow: auto;
+}
+.title {
+    color: $purple;
+    font-size: large;
+    font-weight: bold;
+    margin: 10px 0 5px 0;
+    text-align: center;
+}

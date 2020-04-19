@@ -22,7 +22,7 @@ type Action =
     | { type: 'SETTOTAL'; payload: { total: number } };
 
 interface Options {
-    queryArticle: (page: number) => void;
+    queryArticle: (page?: number) => void;
 }
 const ArticleCtx = createContext<Context<State, Dispatch<Action>, Options>>(
     null
