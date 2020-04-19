@@ -4,12 +4,14 @@ import { Input, Tooltip } from 'antd';
 import { useHistory, useRouteMatch, Switch, Route } from 'react-router-dom';
 import Headpage from './headpage';
 import cx from 'classnames';
+import { useComStore } from '@/store/com-state';
 const Home: React.SFC = () => {
     const [searchValue, setSearchValue] = React.useState<string>('');
     //当前所在页，需考虑是否将其交给context管理
-    const [isCurrent, setIsCurrent] = React.useState<number>(0);
     const history = useHistory();
     const match = useRouteMatch();
+    const { state, dispatch } = useComStore();
+
     const navList = [
         { name: '首页', uri: '/home' },
         { name: '书单', uri: '/home/booklist' },
@@ -36,12 +38,15 @@ const Home: React.SFC = () => {
                             <div key={index}>
                                 <div
                                     onClick={() => {
-                                        if (isCurrent === index) return;
-                                        setIsCurrent(index);
+                                        if (state.current === index) return;
+                                        dispatch({
+                                            type: 'SETCURRENT',
+                                            payload: { current: index }
+                                        });
                                         history.push(val.uri);
                                     }}
                                     className={cx(
-                                        isCurrent === index
+                                        state.current === index
                                             ? style.current
                                             : null,
                                         style.tabs
