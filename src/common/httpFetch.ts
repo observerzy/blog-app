@@ -22,7 +22,7 @@ class HttpRequest implements HttpFetch {
         let options: Request = {
             method: 'POST',
             headers: {},
-            body: {}
+            body: params
         };
         url = `/app${url}?app_login_token=${localStorage.getItem(
             'app_login_token'
