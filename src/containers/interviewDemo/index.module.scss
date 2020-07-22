@@ -1,0 +1,63 @@
+@import '../../common/common.module.scss';
+.bgcFill {
+    background-color: rgb(240, 240, 240);
+    height: 100vh;
+}
+.upContent,
+.downContent {
+    padding: 25px;
+    margin: 0 5px;
+    background-color: #fff;
+}
+.upContent {
+    margin-bottom: 10px;
+}
+.mainTitle {
+    font-size: 18px;
+    font-weight: 600;
+    padding-bottom: 15px;
+}
+.show {
+    color: rgb(105, 185, 254);
+    text-align: center;
+    cursor: pointer;
+}
+.titleInput {
+    height: 30px;
+}
+.redIcon {
+    color: red;
+}
+.input {
+    height: 30px;
+    width: 80%;
+    padding: 5px;
+}
+.colStyle {
+    padding-left: 30px;
+}
+.showbox {
+    position: relative;
+}
+.spreadout {
+    width: 10px;
+    height: 11px;
+    position: absolute;
+    margin-top: 2px;
+    top: 0;
+    left: calc(50% + 25px);
+    transform: rotate(45deg);
+    border-right: 1px solid rgb(105, 185, 254);
+    border-bottom: 1px solid rgb(105, 185, 254);
+}
+.cutout {
+    width: 10px;
+    height: 11px;
+    position: absolute;
+    margin-top: 8px;
+    top: 0;
+    left: calc(50% + 25px);
+    transform: rotate(225deg);
+    border-right: 1px solid rgb(105, 185, 254);
+    border-bottom: 1px solid rgb(105, 185, 254);
+}

@@ -29,7 +29,7 @@ const App = () => {
         >
             <Router>
                 <Switch>
-                    <Redirect exact from="/" to="/home"></Redirect>
+                    <Redirect exact from="/" to="/interviewdemo"></Redirect>
                     {route}
                 </Switch>
             </Router>
