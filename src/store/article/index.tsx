@@ -86,7 +86,8 @@ export const Provider: ComponentType = props => {
     };
     const options: Options = { queryArticle };
     React.useEffect(() => {
-        queryArticle();
+        // 考虑到登录页，不能在这里请求
+        // queryArticle();
     }, []);
     return (
         // 所包裹的一系列组件/子组件都可以用state,dispatch

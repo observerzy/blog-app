@@ -1,11 +1,11 @@
 import APIFactory from '../APIFactory';
 
 export type Req = {
-  username: string;
-  password: string;
+    username: string;
+    password: string;
 };
 export type Resp = {
-  message: string;
+    message: string;
 };
 
-export default APIFactory<Req, Resp>('register');
+export default APIFactory<Req, Resp>('/v1/user/register');

@@ -24,7 +24,7 @@ class HttpRequest implements HttpFetch {
             headers: {},
             body: params
         };
-        url = `/app${url}?app_login_token=${localStorage.getItem(
+        url = `/api${url}?app_login_token=${localStorage.getItem(
             'app_login_token'
         )}`;
         return fetch(url, options)
