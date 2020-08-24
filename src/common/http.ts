@@ -1,8 +1,8 @@
 import axios, { AxiosResponse } from 'axios';
-
+import { message } from 'antd';
 type THeader = {
     retCode: string;
-    errorNo: string;
+    errorNum: string;
     errorMsg: string;
 };
 export interface Response<P> {
@@ -13,6 +13,7 @@ export interface AxiosRespWithWebAPI<T> extends AxiosResponse<Response<T>> {}
 
 // const token = "test_token"
 const RESPONSE_SUCCESS_CODE = '0';
+const RESPONSE_ERRORNUM = '0';
 const UNKONW_ERROR = '未知错误';
 const STATUS_MESSAGE: { [key: string]: string } = {
     404: '服务器错误'
@@ -22,21 +23,6 @@ const instance = axios.create({
     baseURL: 'http://127.0.0.1:9001/api',
     timeout: 1000 * 20
 });
-
-// 用于APIFactory中promise的reject返回错误信息
-export function validationRespCode(res: THeader) {
-    if (res.retCode !== RESPONSE_SUCCESS_CODE) {
-        return res.errorMsg || '请求失败';
-    }
-}
-
-// try/catch中使用，用于处理错误提示形式
-export function handleRespError(e: any) {
-    const content =
-        typeof e === 'string' ? e : e.message ? e.message : UNKONW_ERROR;
-    console.log('error:', content);
-    // todo Modal or Toast
-}
 
 instance.defaults.headers.post['Content-Type'] =
     'application/json;charset=utf-8';
@@ -78,3 +64,20 @@ instance.interceptors.response.use(
 );
 
 export default instance;
+
+// 用于APIFactory中promise的reject返回错误信息
+export function validationRespCode(res: THeader) {
+    if (res.retCode !== RESPONSE_SUCCESS_CODE) {
+        return '请求失败';
+    }
+    if (res.errorNum !== RESPONSE_ERRORNUM) {
+        return res.errorMsg || '注册失败';
+    }
+}
+
+// try/catch中使用，用于处理错误提示形式
+export function handleRespError(e: any) {
+    const content =
+        typeof e === 'string' ? e : e.message ? e.message : UNKONW_ERROR;
+    message.error(content);
+}
