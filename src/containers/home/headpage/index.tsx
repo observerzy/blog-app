@@ -6,6 +6,9 @@ import style from './index.module.scss';
 
 const Headpage: React.SFC = () => {
     const { state, options } = useArticleStore();
+    React.useEffect(() => {
+        options.queryArticle();
+    }, []);
     return (
         <div>
             {state.articleList.map((val, index) => (

@@ -13,7 +13,7 @@ export interface AxiosRespWithWebAPI<T> extends AxiosResponse<Response<T>> {}
 
 // const token = "test_token"
 const RESPONSE_SUCCESS_CODE = '0';
-const RESPONSE_ERRORNUM = '0';
+const RESPONSE_ERRORNUM = '';
 const UNKONW_ERROR = '未知错误';
 const STATUS_MESSAGE: { [key: string]: string } = {
     404: '服务器错误'

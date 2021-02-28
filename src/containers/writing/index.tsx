@@ -4,7 +4,7 @@ import showdown from 'showdown';
 import { useHistory } from 'react-router-dom';
 import { Input, Button, Popconfirm } from 'antd';
 import useSaveArticleHook from '@/model/useSaveArticleHook';
-import { useArticleStore } from '@/store/article';
+import { useComStore } from '@/store';
 const Writing: React.SFC = () => {
     const [title, setTitle] = React.useState<string>('');
     const [content, setContent] = React.useState<string>('');
@@ -12,8 +12,8 @@ const Writing: React.SFC = () => {
     const titleRef = React.useRef<HTMLDivElement>(null);
     const contentRef = React.useRef<HTMLDivElement>(null);
     const history = useHistory();
+    const useComStoreOperate = useComStore();
     const saveArticleHook = useSaveArticleHook();
-    const { options } = useArticleStore();
     const showArticle = (title: string = '', content: string = '') => {
         let converter = new showdown.Converter();
         titleRef.current.innerHTML = converter.makeHtml(title);
@@ -52,8 +52,11 @@ const Writing: React.SFC = () => {
                                     userName: ''
                                 },
                                 () => {
-                                    options.queryArticle();
-                                    history.goBack();
+                                    useComStoreOperate.dispatch({
+                                        type: 'SETCURRENT',
+                                        payload: { current: 0 }
+                                    });
+                                    history.go(-1);
                                 }
                             );
                         }}
@@ -71,7 +74,7 @@ const Writing: React.SFC = () => {
                     <Button
                         type="default"
                         onClick={() => {
-                            history.goBack();
+                            history.go(-1);
                         }}
                     >
                         取消

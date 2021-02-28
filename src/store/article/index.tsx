@@ -11,7 +11,7 @@ import queryArticleList, {
     Article
 } from '@/common/service/queryArticleList';
 import { AxiosRespWithWebAPI } from '../../common/http';
-
+import { getQueryVariable } from '@/common/customizeFunc';
 export interface State {
     articleList: Article[];
     total: number;
@@ -72,6 +72,9 @@ export const Provider: ComponentType = props => {
                 total: 0,
                 offset: page ? (page - 1) * 10 : 0,
                 limit: 10
+            },
+            query: {
+                title: getQueryVariable('title')
             }
         }).then(res => {
             dispatch({

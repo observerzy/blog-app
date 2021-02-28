@@ -4,14 +4,14 @@ import { Input, Tooltip } from 'antd';
 import { useHistory, useRouteMatch, Switch, Route } from 'react-router-dom';
 import Headpage from './headpage';
 import cx from 'classnames';
-import { useComStore } from '@/store/com-state';
+import { useComStore, useArticleStore } from '@/store';
 const Home: React.SFC = () => {
     const [searchValue, setSearchValue] = React.useState<string>('');
     //当前所在页，需考虑是否将其交给context管理
     const history = useHistory();
     const match = useRouteMatch();
     const { state, dispatch } = useComStore();
-
+    const useArticleStoreOperate = useArticleStore();
     const navList = [
         { name: '首页', uri: '/home' },
         { name: '书单', uri: '/home/booklist' },
@@ -26,7 +26,7 @@ const Home: React.SFC = () => {
                     <div className={style.title}>
                         <span
                             onClick={() => {
-                                window.location.reload();
+                                window.location.replace('/home');
                             }}
                         >
                             CodeWorld 0和1的世界
@@ -67,8 +67,9 @@ const Home: React.SFC = () => {
                             onChange={e => {
                                 setSearchValue(e.target.value);
                             }}
-                            onSearch={() => {
-                                setSearchValue('');
+                            onSearch={(v: string) => {
+                                history.push(v ? `?title=${v}` : '');
+                                useArticleStoreOperate.options.queryArticle(1);
                             }}
                         />
                     </Tooltip>

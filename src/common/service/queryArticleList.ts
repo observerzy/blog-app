@@ -2,6 +2,7 @@ import APIFactory from '../APIFactory';
 
 export type Req = {
     pagination: PaginationBean;
+    query?: Record<string, any>;
 };
 export type PaginationBean = {
     total: number;
