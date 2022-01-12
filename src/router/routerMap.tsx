@@ -18,7 +18,9 @@ const Writing = lazy(() =>
 const InterviewDemo = lazy(() =>
     import(/*webpackChunkName:"writing"*/ '@/containers/interviewDemo')
 );
-
+const DemoShow = lazy(() =>
+    import(/*webpackChunkName:"writing"*/ '@/containers/demoShow')
+);
 const routerMap = [
     {
         path: '/home',
@@ -43,6 +45,10 @@ const routerMap = [
     {
         path: '/interviewdemo',
         component: InterviewDemo
+    },
+    {
+        path: '/demoshow',
+        component: DemoShow
     }
 ];
 
